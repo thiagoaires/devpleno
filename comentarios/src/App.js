@@ -4,8 +4,10 @@ import NewComment from './NewComment'
 import Comments from './Comments'
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+
+    this.postNewComment = this.postNewComment.bind(this)
     this.state = {
       'comments': {
         '1': {
@@ -18,14 +20,15 @@ class App extends Component {
     }
   }
   postNewComment(comment){
-    this.setState(
-      ...this.state.comments, comment
-    )
+    const comments = {...this.state.comments}
+    const timeStamp = Date.now()
+    comments[`teste ${timeStamp}`] = comment
+    this.setState({comments, comment})
   }
   render() {
     return (
       <div className="container">
-        <NewComment />
+        <NewComment postNewComment={this.postNewComment}/>
         <Comments comments={this.state.comments} />
       </div>
     );
