@@ -1,19 +1,19 @@
 import React, {Component} from 'react'
+import Comment from './Comment'
 
 class Comments extends Component{
   writeComment(valor, index){
     return (
-      <li key={index}>
-        {valor.comment}
-      </li>
+        <Comment key={index} commentContent={valor}/>
     )
   }
   render(){
     return(
-      <ul>
-        {console.log(Object.keys(this.props.comments))}
-        {Object.values(this.props.comments).map((comentario, index) => this.writeComment(comentario, index))}
-      </ul>
+      <div>
+        {Object.values(this.props.comments).map((comentario, index) => 
+          this.writeComment(comentario, index))
+        }
+      </div>
     )
   }
 }

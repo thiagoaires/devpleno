@@ -3,21 +3,21 @@ import React, { Component } from 'react';
 import NewComment from './NewComment'
 import Comments from './Comments'
 
+import Base from './Base'
+
 class App extends Component {
   constructor(props){
     super(props)
 
     this.postNewComment = this.postNewComment.bind(this)
     this.state = {
-      'comments': {
-        '1': {
-          comment: 'comentario um'
-        },
-        '2': {
-          comment: 'comentario dois'
-          }
-      }
+      'comments': {}
     }
+    this.refComments = Base.syncState('comments',{
+      context: this,
+      state: 'comments'
+    })
+
   }
   postNewComment(comment){
     const comments = {...this.state.comments}
