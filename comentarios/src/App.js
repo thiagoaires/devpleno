@@ -11,24 +11,37 @@ class App extends Component {
 
     this.postNewComment = this.postNewComment.bind(this)
     this.state = {
-      'comments': {}
+      'comments': {},
+      isLogged: false,
+      user: ''
     }
     this.refComments = Base.syncState('comments',{
       context: this,
       state: 'comments'
     })
-
   }
+
   postNewComment(comment){
+
     const comments = {...this.state.comments}
     const timeStamp = Date.now()
     comments[`teste ${timeStamp}`] = comment
     this.setState({comments, comment})
   }
+
+  auth(provider){
+    console.log(provider)
+  }
   render() {
+
     return (
       <div className="container">
-        <NewComment postNewComment={this.postNewComment}/>
+        { this.state.isLogged && <NewComment postNewComment={this.postNewComment}/> }
+        { !this.state.isLogged && 
+          <div className="alert alert-info">
+            <button type="button" className="btn btn-primary" onClick={() => this.auth('facebook')}>Login com o Facebook</button>
+          </div>
+        }
         <Comments comments={this.state.comments} />
       </div>
     );
