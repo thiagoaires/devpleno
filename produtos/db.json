@@ -1,0 +1,27 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Sabao",
+      "categoria": 1
+    },{
+      "id": 2,
+      "nome": "Vassoura",
+      "categoria": 1
+    },{
+      "id": 3,
+      "nome": "Bolacha",
+      "categoria": 2
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Limpeza"
+    },
+    {
+      "id": 2,
+      "nome": "Alimentos"
+    }
+  ]
+}
