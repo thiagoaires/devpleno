@@ -26,7 +26,7 @@ export default class Categoria extends Component{
       <div>
         <h2>Categoria {this.props.match.params.catId}</h2>
         {
-          this.state.produtos.map(prod => prod.nome)
+          this.state.produtos.map((prod, index) => <p key={prod.id}>{prod.nome}</p>)
         }
       </div>
     )
