@@ -4,11 +4,13 @@
       "id": 1,
       "nome": "Sabao",
       "categoria": 1
-    },{
+    },
+    {
       "id": 2,
       "nome": "Vassoura",
       "categoria": 1
-    },{
+    },
+    {
       "id": 3,
       "nome": "Bolacha",
       "categoria": 2
@@ -22,6 +24,10 @@
     {
       "id": 2,
       "nome": "Alimentos"
+    },
+    {
+      "nome": "new categoria",
+      "id": 3
     }
   ]
 }
