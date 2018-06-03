@@ -15,6 +15,8 @@ export default class Produtos extends Component {
   
     this.renderCategoria = this.renderCategoria.bind(this)
     this.handleCategoria = this.handleCategoria.bind(this)
+    this.handleEditCategoria = this.handleEditCategoria.bind(this)
+    this.cancelCategoria = this.cancelCategoria.bind(this)
 
     this.estlilo = {
       listStyle: 'none', 
@@ -27,21 +29,44 @@ export default class Produtos extends Component {
   renderCategoria(cat){
     return(
       <li key={cat.id}>
-      <button className='btn btn-primary btn-xs' onClick={() => this.props.removeCategoria(cat.id)}>
-        <span className='glyphicon glyphicon-remove'></span>
-      </button>
-      <button className='btn btn-primary btn-xs' onClick={() => this.editCategoria(cat.id)}>
-        <span className='glyphicon glyphicon-pencil'></span>
-      </button> 
-        <Link to={`/produtos/categoria/${cat.id}`}>{cat.nome}</Link>
+      {
+        this.state.editingCategoria === cat.id && 
+        <div className='well well-sm'>
+          <input className='form-group' onKeyUp={this.handleEditCategoria} type="text" ref={'cat-' + cat.id} defaultValue={cat.nome} />
+          <button className='btn btn-primary btn-xs' onClick={this.cancelCategoria}>
+            cancelar
+          </button>
+        </div>
+      }
+      { this.state.editingCategoria !== cat.id && 
+        <div>
+          <button className='btn btn-primary btn-xs' onClick={() => this.props.removeCategoria(cat.id)}>
+            <span className='glyphicon glyphicon-remove'></span>
+          </button>
+          <button className='btn btn-primary btn-xs' onClick={() => this.editCategoria(cat.id)}>
+            <span className='glyphicon glyphicon-pencil'></span>
+          </button> 
+          <Link to={`/produtos/categoria/${cat.id}`}>{cat.nome}</Link>
+        </div>
+        }
       </li>
     )
+  }
+  handleEditCategoria(e){
+    if (e.keyCode === 13){
+      this.props.editCategoria({id: this.state.editingCategoria, nome: this.refs['cat-' +  this.state.editingCategoria].value})
+      this.setState({editingCategoria: ''})
+    }
   }
   handleCategoria(e){
     if (e.keyCode === 13){
       this.props.createCategoria({nome: this.refs.categoria.value})
       this.refs.categoria.value = ''
     }
+  }
+
+  cancelCategoria(){
+    this.setState({editingCategoria: ''})
   }
 
   componentDidMount(){
