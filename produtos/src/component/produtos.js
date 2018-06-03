@@ -8,43 +8,49 @@ import Categoria from './categoria/categoria';
 export default class Produtos extends Component {
   constructor(props){
     super(props)
+ 
     this.state = {
-      categorias: []
+      editingCategoria: ''
     }
-    this.handleCategorias = this.handleCategorias.bind(this)
+  
     this.renderCategoria = this.renderCategoria.bind(this)
-    this.removeCategoria = this.removeCategoria.bind(this)
-  }
+    this.handleCategoria = this.handleCategoria.bind(this)
 
-  removeCategoria(categoria){
-    // Api.deleteCategoria(categoria)
-    //   .then(res => this.loadCategorias())
+    this.estlilo = {
+      listStyle: 'none', 
+      padding: 0
+    }
+  }
+  editCategoria(categoria){
+    this.setState({editingCategoria: categoria})
   }
   renderCategoria(cat){
     return(
       <li key={cat.id}>
-        <button className='btn btn-primary btn-xs' onClick={() => this.removeCategoria(cat.id)}>
-          <span className='glyphicon glyphicon-remove'></span>
-        </button> 
+      <button className='btn btn-primary btn-xs' onClick={() => this.props.removeCategoria(cat.id)}>
+        <span className='glyphicon glyphicon-remove'></span>
+      </button>
+      <button className='btn btn-primary btn-xs' onClick={() => this.editCategoria(cat.id)}>
+        <span className='glyphicon glyphicon-pencil'></span>
+      </button> 
         <Link to={`/produtos/categoria/${cat.id}`}>{cat.nome}</Link>
       </li>
     )
   }
-  handleCategorias(e){
+  handleCategoria(e){
     if (e.keyCode === 13){
-      // Api.cadastrarCategoria({nome: this.refs.categoria.value})
-      //   .then(res => this.loadCategorias())
-
+      this.props.createCategoria({nome: this.refs.categoria.value})
       this.refs.categoria.value = ''
     }
   }
 
   componentDidMount(){
-    //this.props.loadCategorias()
+    this.props.loadCategorias()
   }
 
   render() {
     const { match } = this.props
+    const { categorias } = this.props
 
     return(
       <div>
@@ -52,14 +58,12 @@ export default class Produtos extends Component {
 
           <div className="col-md-2">
             <h3>Categorias</h3>
-            <ul>
-              {
-                this.state.categorias.map(this.renderCategoria)
-
-              }
+            
+            <ul style={{...this.estlilo}}>
+              { categorias.map(this.renderCategoria) }
             </ul>
             <div className='well well-sm'>
-              <input onKeyUp={this.handleCategorias} type="text" ref='categoria' placeholder='insira nova categoria' className='form-control'/>
+              <input onKeyUp={this.handleCategoria} type="text" ref='categoria' placeholder='insira nova categoria' className='form-control'/>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Categoria extends Component{
   constructor(props){
@@ -9,15 +10,13 @@ export default class Categoria extends Component{
     }
   }
   loadData(id){
-    this.props.Api.loadProdutos(id)
-      .then(res => {
-        this.setState({produtos: res.data})
-      })
+    axios
+      .get(`http://localhost:3001/produtos?categoria=${id}`)
+      .then(res => this.setState({produtos: res.data}))
 
-    this.props.Api.loadCategoria(id)
-      .then(res => {
-        this.setState({categoria: res.data})
-      })
+    axios
+      .get(`http://localhost:3001/categorias/${id}`)
+      .then(res => this.setState({categoria: res.data}))
   }
   
   componentDidMount(){
@@ -37,7 +36,9 @@ export default class Categoria extends Component{
   render(){
     return(
       <div>
-        <h2>{this.state.categoria.nome}</h2>
+        <h2>
+          {this.state.categoria.nome}
+        </h2>
         
         {
           this.state.produtos.map(this.renderProdCat)

@@ -26,8 +26,16 @@
       "nome": "Alimentos"
     },
     {
-      "nome": "new categoria",
-      "id": 3
+      "id": 3,
+      "nome": "Teste"
+    },
+    {
+      "nome": "ok",
+      "id": 5
+    },
+    {
+      "nome": "editCategoria",
+      "id": 6
     }
   ]
 }
