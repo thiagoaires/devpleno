@@ -104,7 +104,11 @@ export default class Produtos extends Component {
                 createProduto={this.props.createProduto}
                 />
               )}  />
-            <Route path={`${match.url}/categoria/:catId`} component={Categoria} />
+            <Route path={`${match.url}/categoria/:catId`} render={(props) => (
+              <Categoria 
+                {...props} 
+              />
+            )} />
           </div>
 
         </div>
