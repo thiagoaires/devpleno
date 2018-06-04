@@ -8,6 +8,9 @@ const Api = {
   loadCategoria: (id) => instancia.get(`categorias/${id}`), 
   loadCategorias: () => instancia.get('categorias'),
   loadProdutos: (id) => instancia.get('produtos?categoria=' + id), 
+
+  createProduto: (produto) => instancia.post('produtos', produto),
+
   deleteCategoria: (id) => instancia.delete('categorias/' + id),
   createCategoria: (categoria) => instancia.post('categorias', categoria),
   editCategoria: (categoria) => instancia.put('categorias/' + categoria.id, categoria)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 
 import ProdutosHome from './produtos/produtosHome'
+import ProdutoNovo from './produtos/produtoNovo'
 import Categoria from './categoria/categoria';
 
 
@@ -18,7 +19,7 @@ export default class Produtos extends Component {
     this.handleEditCategoria = this.handleEditCategoria.bind(this)
     this.cancelCategoria = this.cancelCategoria.bind(this)
 
-    this.estlilo = {
+    this.estilo = {
       listStyle: 'none', 
       padding: 0
     }
@@ -82,9 +83,10 @@ export default class Produtos extends Component {
         <div className="row">
 
           <div className="col-md-2">
+            <Link to={match.url + '/novo'}><span className='glyphicon glyphicon-edit'></span> Novo produto</Link>
             <h3>Categorias</h3>
             
-            <ul style={{...this.estlilo}}>
+            <ul style={{...this.estilo}}>
               { categorias.map(this.renderCategoria) }
             </ul>
             <div className='well well-sm'>
@@ -95,6 +97,13 @@ export default class Produtos extends Component {
           <div className="col-md-10">
             <h1>Produtos</h1>
             <Route exact path={match.url} component={ProdutosHome} />
+            <Route exact path={`${match.url}/novo`}  render={(props) =>( 
+              <ProdutoNovo 
+                {...props} 
+                categorias={this.props.categorias}
+                createProduto={this.props.createProduto}
+                />
+              )}  />
             <Route path={`${match.url}/categoria/:catId`} component={Categoria} />
           </div>
 
