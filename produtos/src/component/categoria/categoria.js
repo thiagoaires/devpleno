@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 export default class Categoria extends Component{
   constructor(props){
@@ -10,12 +9,12 @@ export default class Categoria extends Component{
     }
   }
   loadData(id){
-    axios
-      .get(`http://localhost:3001/produtos?categoria=${id}`)
+    // axios
+    //   .get(`http://localhost:3001/produtos?categoria=${id}`)
+    this.props.loadProdutos(id)
       .then(res => this.setState({produtos: res.data}))
 
-    axios
-      .get(`http://localhost:3001/categorias/${id}`)
+    this.props.loadCategoria(id)
       .then(res => this.setState({categoria: res.data}))
   }
   

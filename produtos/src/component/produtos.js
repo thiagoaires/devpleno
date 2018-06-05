@@ -106,7 +106,9 @@ export default class Produtos extends Component {
               )}  />
             <Route path={`${match.url}/categoria/:catId`} render={(props) => (
               <Categoria 
-                {...props} 
+                {...props}
+                loadProdutos = {this.props.loadProdutos}
+                loadCategoria = {this.props.loadCategoria} 
               />
             )} />
           </div>
