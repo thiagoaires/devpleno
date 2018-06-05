@@ -108,7 +108,9 @@ export default class Produtos extends Component {
               <Categoria 
                 {...props}
                 loadProdutos = {this.props.loadProdutos}
-                loadCategoria = {this.props.loadCategoria} 
+                loadCategoria = {this.props.loadCategoria}
+                categoria = {this.props.categoria}
+                produtos = {this.props.produtos}
               />
             )} />
           </div>

@@ -25,9 +25,11 @@ class App extends Component {
   }
   loadCategoria(categoria){
     return this.props.api.loadCategoria(categoria)
+      .then(res => this.setState({categoria: res.data}))
   }
   loadProdutos(produto){
     return this.props.api.loadProdutos(produto)
+      .then(res => this.setState({produtos: res.data}))
   }
   createProduto(produto){
     return this.props.api.createProduto(produto)
@@ -85,6 +87,8 @@ class App extends Component {
                   loadProdutos={this.loadProdutos}
                   loadCategoria={this.loadCategoria}
                   categorias={this.state.categorias}
+                  categoria={this.state.categoria}
+                  produtos={this.state.produtos}
                 />)
                 }/>
             </div>
