@@ -5,7 +5,10 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import counterReducer from './reducer';
 
-let store = createStore(counterReducer)
+let store = createStore(
+  counterReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 class App extends Component {
   render() {
