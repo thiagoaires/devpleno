@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import Counter from './Counter'
 import DisplayCounter from './DisplayCounter'
-import { createStore } from 'redux'
+
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
+import logger from 'redux-logger'
+
 import counterReducer from './reducer';
+import Ola from './Ola';
 
 let store = createStore(
   counterReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(logger)
 )
 
 class App extends Component {
@@ -15,6 +20,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <Ola nome='thiago' />
           <Counter />
           <DisplayCounter />
         </div>

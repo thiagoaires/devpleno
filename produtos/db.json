@@ -54,6 +54,11 @@
       "nome": "Testooooo",
       "categoria": "3",
       "id": 11
+    },
+    {
+      "nome": "Macaco",
+      "categoria": "6",
+      "id": 12
     }
   ],
   "categorias": [
@@ -72,6 +77,10 @@
     {
       "id": 5,
       "nome": "nova"
+    },
+    {
+      "nome": "Rodrigo",
+      "id": 6
     }
   ]
 }

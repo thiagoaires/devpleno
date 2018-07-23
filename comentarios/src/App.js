@@ -27,7 +27,7 @@ class App extends Component {
         if (user){
           this.setState({isLogged:true, user})
         } else {
-          this.setState({isLogged: false, user: {}}) 
+          this.setState({isLogged: false, user: {}})
         }
       }
     )
@@ -51,16 +51,16 @@ class App extends Component {
 
     return (
       <div className="container">
-        { this.state.isLogged && 
+        { this.state.isLogged &&
         <div>
-          <img src={this.state.user.photoURL} alt={this.state.user.displayName}/> 
+          <img src={this.state.user.photoURL} alt={this.state.user.displayName}/>
           <span>Boa tarde, {this.state.user.displayName}</span>
-          
+
           <button type="button" className="btn btn-sm btn-link" onClick={() => this.props.auth.signOut()}>Logoff</button>
-          <NewComment postNewComment={this.postNewComment}/> 
+          <NewComment postNewComment={this.postNewComment}/>
         </div>
         }
-        { !this.state.isLogged && 
+        { !this.state.isLogged &&
           <div className="alert alert-info">
             <button type="button" className="btn btn-primary" onClick={() => this.auth('facebook')}>Login com o Facebook</button>
           </div>
