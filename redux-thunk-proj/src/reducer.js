@@ -1,9 +1,11 @@
+//reducer: é um metodo que recebe um estado e uma action
+
 const INITIAL_STATE = {
   data: [],
   isFetching: false
 }
 
-const reducer = (state = INITIAL_STATE, action) => {
+export const reducer = (state = INITIAL_STATE, action) => {
   if (action.type === 'LOAD_DATA'){
 
   }
