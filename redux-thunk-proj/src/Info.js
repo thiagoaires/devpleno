@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 import { loadData } from './actions'
 
-export class Info extends Component {
+export class Info extends React.Component {
   componentDidMount(){
     this.props.loadData()
   }
-
   render(){
-    return(
-      <div>Info</div>
-    )
+    return <span>Info</span>
   }
 }
 
