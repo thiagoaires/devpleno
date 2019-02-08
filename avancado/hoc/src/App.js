@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Myip from './components/Myip'
-import Agent from './components/Agent'
+import MyIP from './components/MyIP'
+import MyAgent from './components/MyAgent'
 
 class App extends Component {
   render() {
@@ -10,8 +10,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           high order component
-          <Myip />
-          <Agent />
+          <MyIP style={{background: '#fc0'}}/>
+          <MyAgent />
         </header>
 
       </div>
